@@ -11,7 +11,12 @@ systemctl stop mysqld.service && rm -rf /var/lib/mysql/*
 systemctl stop mysqld.service
 scp -i cloud-db -r /var/lib/mysql/* root@replica.db.local:/var/lib/mysql/
 
+mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
+
 vi /etc/my.cnf
+
+# GTID-BASED Replication setup
+server-id                  = 1
 log-bin                    = /var/log/mysql/binlogs/primary-binlog
 log-bin-index              = /var/log/mysql/binlogs/primary-binlog.index
 binlog-expire-logs-seconds = 432000
@@ -23,11 +28,14 @@ systemctl start mysqld.service
 
 ### REPLICA - PREPARE FOR REPLICATION
 ```sh
-rm -f /var/lib/mysql/*.auto && rm -f /var/lib/mysql/iblogs*
+rm -f /var/lib/mysql/auto.cnf && rm -f /var/lib/mysql/binlog.* && rm -f /var/lib/mysql/undo_*
 chown -R mysql:mysql /var/lib/mysql && systemctl start mysqld.service
 
 mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
+
 vi /etc/my.cnf
+
+# GTID-BASED Replication setup
 server-id                  = 2
 log-bin                    = /var/log/mysql/binlogs/replica-binlog
 log-bin-index              = /var/log/mysql/binlogs/replica-binlog.index
@@ -37,6 +45,7 @@ enforce-gtid-consistency   = ON
 report-host                = replica.db.local
 
 systemctl stop mysqld.service && systemctl start mysqld.service
+mysql -u root -p
 ```
 
 ### REPLICA - SETUP GTID-BASED REPLICATION
