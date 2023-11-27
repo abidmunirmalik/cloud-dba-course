@@ -7,12 +7,13 @@ cd /tmp
 wget https://downloads.mysql.com/archives/get/p/23/file/mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar
 tar xvf mysql-8.0.33-1.el7.x86_64.rpm-bundle.tar
 
-yum localinstall mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm
-yum localinstall mysql-community-common-8.0.33-1.el7.x86_64.rpm
-yum localinstall mysql-community-libs-8.0.33-1.el7.x86_64.rpm
-yum localinstall mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm
-yum localinstall mysql-community-client-8.0.33-1.el7.x86_64.rpm
-yum localinstall mysql-community-server-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-client-plugins-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-common-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-libs-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-icu-data-files-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-client-8.0.33-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-server-8.0.33-1.el7.x86_64.rpm
+
 rpm -qa | grep mysql
 
 systemctl enable mysqld.service && systemctl start mysqld.service
@@ -29,6 +30,7 @@ grep "temporary password" /var/log/mysqld.log
 mysql_secure_installation
 
 mysql --host=localhost --user=root --password
+mysql_config_editor set --user=root --password
 ```
 
 
@@ -39,10 +41,4 @@ CREATE USER IF NOT EXISTS replication_admin IDENTIFIED WITH mysql_native_passwor
 GRANT ALL PRIVILEGES ON *.* TO bob WITH GRANT OPTION;
 GRANT REPLICATION SLAVE ON *.* TO replication_admin;
 FLUSH PRIVILEGES;
-```
-
-
-### STORE AUTH CREDENTIALS
-```sh
-mysql_config_editor set --user=bob --password
 ```
