@@ -8,7 +8,7 @@ sudo systemctl stop mysqld && sudo rm -rf /var/lib/mysql/* && mkdir /tmp/restore
 
 ### ON-PREM REPLICA - COLD BACKUP
 ```sh
-mysql> SET innodb_fast_shutdown = 0;
+mysql> SET GLOBAL innodb_fast_shutdown = 0;
 mysql> stop replica;
 systemctl stop mysqld
 vi aws-ec2
