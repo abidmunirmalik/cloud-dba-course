@@ -3,10 +3,7 @@
 ### EC2 - SHUTDOWN MYSQLD & REMOVE DATA DIRECTORY
 ```sh
 ssh -i "aws-ec2" ec2-user@ec2-12-34-567-789.compute-1.amazonaws.com
-sudo -i
-systemctl stop mysqld
-rm -rf /var/lib/mysql/
-mkdir /tmp/restore
+sudo systemctl stop mysqld && sudo rm -rf /var/lib/mysql/* && mkdir /tmp/restore
 ```
 
 ### ON-PREM REPLICA - COLD BACKUP
