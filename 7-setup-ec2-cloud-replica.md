@@ -7,7 +7,7 @@ mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
 vi /etc/my.cnf
 
 # GTID-BASED Replication setup
-server-id                  = 2
+server-id                  = 3
 log-bin                    = /var/log/mysql/binlogs/cloud-replica-binlog
 log-bin-index              = /var/log/mysql/binlogs/cloud-replica-binlog.index
 binlog-expire-logs-seconds = 432000
