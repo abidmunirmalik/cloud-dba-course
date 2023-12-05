@@ -31,4 +31,7 @@ Default output format [None]: json
 
 aws configure list
 aws configure list-profiles
+
+aws sts get-caller-identity
+aws ec2 describe-instances
 ```
