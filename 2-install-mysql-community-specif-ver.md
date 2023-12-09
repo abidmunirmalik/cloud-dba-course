@@ -22,6 +22,21 @@ pidof mysqld
 netstat -ntlp | grep 3306
 ```
 
+**Note:** Remove `mariadb-lib` only if you see following error
+```sh
+# yum localinstall -y mysql-community-libs-8.0.33-1.el7.x86_64.rpm
+Error: Package: 2:postfix-2.10.1-6.amzn2.0.3.x86_64 (installed)
+       Requires: libmysqlclient.so.18()(64bit)
+       Removing: 1:mariadb-libs-5.5.68-1.amzn2.0.1.x86_64 (@amzn2-core)
+           libmysqlclient.so.18()(64bit)
+
+# yum remove -y mariadb-libs.x86_64
+Removed:
+  mariadb-libs.x86_64 1:5.5.68-1.amzn2.0.1
+Dependency Removed:
+  postfix.x86_64 2:2.10.1-6.amzn2.0.3
+```
+
 
 ### PERFORM SECURE INSTALLATION
 ```sh
