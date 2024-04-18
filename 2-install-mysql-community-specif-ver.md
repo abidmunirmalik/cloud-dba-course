@@ -57,3 +57,28 @@ GRANT ALL PRIVILEGES ON *.* TO bob WITH GRANT OPTION;
 GRANT REPLICATION SLAVE ON *.* TO replication_admin;
 FLUSH PRIVILEGES;
 ```
+
+
+### UPGRADE MYSQL TO 8.0.35
+```sh
+systemctl stop mysqld.service
+cd /tmp
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-8.0.35-1.el7.x86_64.rpm-bundle.tar
+tar xvf mysql-8.0.35-1.el7.x86_64.rpm-bundle.tar
+
+yum -y remove mysql-community-client-plugins-8.0.33-1.el7.x86_64
+yum -y remove mysql-community-common-8.0.33-1.el7.x86_64
+yum -y remove mysql-community-icu-data-files-8.0.33-1.el7.x86_64
+
+yum localinstall -y mysql-community-client-plugins-8.0.35-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-common-8.0.35-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-libs-8.0.35-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-icu-data-files-8.0.35-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-client-8.0.35-1.el7.x86_64.rpm
+yum localinstall -y mysql-community-server-8.0.35-1.el7.x86_64.rpm
+
+rpm -qa | grep mysql
+
+systemctl enable mysqld.service && systemctl start mysqld.service
+systemctl status mysqld.service
+```
