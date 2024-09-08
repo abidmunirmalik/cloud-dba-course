@@ -19,6 +19,18 @@ DigitalOcean $200 Credit for 60 Days: https://m.do.co/c/8722350423f7
 ### DISABLE SELINUX & EDIT HOSTS FILE
 ```
 1. Disable `selinux` on both primary & replica
+
+vi /etc/selinux/config
+SELINUXTYPE=disabled
+
 2. Edit the `/etc/hosts` file to add friendly DNS name of target host
+
+vi /etc/hosts
+10.116.0.2  primary.db.local primary
+10.116.0.3  replica.db.local replica
+
 3. Reboot both Primary & Replica Server
+
+init 6
+
 ```
