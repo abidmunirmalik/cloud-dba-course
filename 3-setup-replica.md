@@ -54,3 +54,16 @@ CHANGE REPLICATION SOURCE TO SOURCE_HOST='primary.db.local', SOURCE_USER='replic
 START REPLICA;
 SHOW REPLICA STATUS;
 ```
+
+### REPLICATION ERROR - CASHING_SHA2_PASSWORD REQUIRES SECURE CONNECTION
+```sh
+Last_IO_Error: Error connecting to source 'replication_admin@primary.db.local:3306'. This was attempt 3/86400, with a delay of 60 seconds between attempts. Message: Authentication plugin 'caching_sha2_password' reported error: Authentication requires secure connection.
+
+STOP REPLICA;
+SELECT user, host, plugin FROM mysql.user WHERE user LIKE 'replication%';
+ALTER USER replication_admin IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd123'; (Both Primary & Replica)
+Restart Primary mysqld i.e systemctl start mysqld && systemctl start mysqld
+START REPLICA;
+SHOW REPLICA STATUS\G
+```
+
