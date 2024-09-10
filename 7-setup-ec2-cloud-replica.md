@@ -2,7 +2,8 @@
 
 ### CLOUD REPLICA - PREPARE FOR REPLICATION
 ```sh
-mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
+mkdir -p /var/log/mysql/binlogs
+chown -R mysql:mysql /var/log/mysql/
 
 vi /etc/my.cnf
 
@@ -17,10 +18,17 @@ report-host                = cloud-replica.db.local
 
 systemctl stop mysqld.service && systemctl start mysqld.service
 mysql -u root -p
+
+vi /etc/hosts
+12.345.678.910  primary.db.local primary
+111.122.444.555  replica.db.local replica
+
+mysql -h primary.db.local -u replication_admin -p
 ```
 
 ### CLOUD REPLICA - SETUP GTID-BASED REPLICATION
 ```sql
+mysql -u root -p
 RESET REPLICA;
 CHANGE REPLICATION SOURCE TO SOURCE_HOST='primary.db.local', SOURCE_USER='replication_admin', SOURCE_PASSWORD='P@ssw0rd123', SOURCE_AUTO_POSITION=1;
 START REPLICA;
