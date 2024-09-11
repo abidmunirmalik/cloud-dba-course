@@ -4,13 +4,13 @@ DigitalOcean $200 Credit for 60 Days: https://m.do.co/c/8722350423f7
 
 ### SETUP 2 VMs ON DIGITAL-OCEAN
 ```
-1. Create New Project called `MySQL`
+1. Create New Project called `DATABASES`
 2. Create `Droplets`
-3. Region: New York (please choose that is closer to you)
-4. Choose Image: CentOS 7
+3. Region: San Francisco (please choose that is closer to you)
+4. Choose Image: CentOS 9
 5. Droplet Type: Basic
 6. CPU Options: Regular(SSD) 1GB/1CPU
-7. Authentication Method - SSH Key - New SSH Key `Key-Name: cloud-db`
+7. Authentication Method - SSH Key - New SSH Key `Key-Name: on-prem`
 8. Quantity: 2
 9. Droplet-1 Name: primary & Droplet-2 Name: replica
 10. Create
@@ -21,7 +21,7 @@ DigitalOcean $200 Credit for 60 Days: https://m.do.co/c/8722350423f7
 1. Disable `selinux` on both primary & replica
 
 vi /etc/selinux/config
-SELINUXTYPE=disabled
+SELINUX=disabled
 
 2. Edit the `/etc/hosts` file to add friendly DNS name of target host
 
@@ -32,5 +32,4 @@ vi /etc/hosts
 3. Reboot both Primary & Replica Server
 
 init 6
-
 ```
