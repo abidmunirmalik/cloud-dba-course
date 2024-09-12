@@ -9,7 +9,11 @@ systemctl stop mysqld.service && rm -rf /var/lib/mysql/*
 ### PRIMARY - PREPARE FOR REPLICATION
 ```sh
 systemctl stop mysqld.service
-scp -i cloud-db -r /var/lib/mysql/* root@replica.db.local:/var/lib/mysql/
+
+vi on-prem (copy this file contents from your local ~/.ssh/on-prem file)
+chmod 600 on-prem
+
+scp -i on-prem -r /var/lib/mysql/* root@replica.db.local:/var/lib/mysql/
 
 mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
 
@@ -29,12 +33,12 @@ systemctl start mysqld.service
 ### REPLICA - PREPARE FOR REPLICATION
 ```sh
 rm -f /var/lib/mysql/auto.cnf && rm -f /var/lib/mysql/binlog.* && rm -f /var/lib/mysql/undo_*
-chown -R mysql:mysql /var/lib/mysql && systemctl start mysqld.service
+
+chown -R mysql:mysql /var/lib/mysql
 
 mkdir -p /var/log/mysql/binlogs && chown -R mysql:mysql /var/log/mysql/
 
 vi /etc/my.cnf
-
 # GTID-BASED Replication setup
 server-id                  = 2
 log-bin                    = /var/log/mysql/binlogs/replica-binlog
