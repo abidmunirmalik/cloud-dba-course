@@ -71,3 +71,17 @@ START REPLICA;
 SHOW REPLICA STATUS\G
 ```
 
+### TESTING REPLICATION
+```sql
+CREATE DATABASE employees;
+USE employees;
+CREATE TABLE employee(emp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, emp_fname VARCHAR(25) NOT NULL, emp_lname VARCHAR(25) NOT NULL);
+INSERT INTO employee(emp_fname, emp_lname)
+VALUES
+ ('Bobby', 'Muller'),
+ ('Prasad', 'Kumar'),
+ ('Tom', 'Brady'),
+ ('Johny', 'Doe'),
+ ('Josh', 'Middleton');
+```
+
