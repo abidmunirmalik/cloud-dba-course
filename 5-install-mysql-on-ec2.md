@@ -4,8 +4,10 @@
 ### INSTALL SPECIFIC MYSQL COMMUNITY SERVER ON EC2
 ```sh
 cp ~/Downloads/ec2-cloud-db.pem ~/.ssh/
-chmod 400 ~/.ssh/ec2-cloud-db.pem
+chmod 600 ~/.ssh/ec2-cloud-db.pem
+
 ssh -i ~/.ssh/ec2-cloud-db.pem ec2-user@ec2-3-90-163-76.compute-1.amazonaws.com
+
 sudo -i
 yum -y install wget tar
 cd /tmp
