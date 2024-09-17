@@ -6,3 +6,10 @@ wget https://downloads.percona.com/downloads/Percona-XtraBackup-8.0/Percona-Xtra
 yum -y localinstall percona-xtrabackup-80-8.0.35-31.1.el9.x86_64.rpm
 xtrabackup --version
 ```
+
+### XTRABACKUP
+```sh
+mkdir /tmp/hot_backup
+xtrabackup --backup --open-files-limit=256000 --target-dir=/tmp/hot_backup
+xtrabackup --prepare --target-dir=/tmp/hot_backup
+```
