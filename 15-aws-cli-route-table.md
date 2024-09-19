@@ -21,6 +21,7 @@ aws ec2 create-route-table \
 ### GET ROUTE TABLE ID & IGW ID
 ```sh
 aws ec2 describe-route-tables | jq '.RouteTables[] | {RouteTableId}, {Tags}'
+aws ec2 describe-internet-gateways | jq '.InternetGateways[] | {InternetGatewayId}, {Tags}'
 ```
 
 
