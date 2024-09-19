@@ -19,6 +19,25 @@ aws ec2 create-security-group \
     --tag-specifications ResourceType=security-group,Tags='[{Key=Name,Value="dev-rds-sg"}]'
 ```
 
+### GET SECURITY ID
+```sh
+aws ec2 describe-security-groups | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
+```
+
+
+### CREATE INBOUND RULE
+```sh
+SEC_ID="sg-0d40d9597e090c615"
+echo ${SEC_ID}
+
+aws ec2 authorize-security-group-ingress \
+    --group-id ${SEC_ID} \
+    --protocol tcp \
+    --port 3306 \
+    --cidr 0.0.0.0/0 
+```
+
+
 ### VERIFY
 ```sh
 aws ec2 describe-security-groups | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
