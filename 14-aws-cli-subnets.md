@@ -3,7 +3,7 @@
 
 ### GET VPC ID
 ```sh
-aws ec2 describe-vpcs | jq '.Vpcs[] | {VpcId},{Tags}'
+aws ec2 describe-vpcs --profile staging | jq '.Vpcs[] | {VpcId},{Tags}'
 ```
 
 
@@ -41,6 +41,6 @@ aws ec2 create-subnet \
 
 ### VERIFY
 ```sh
-aws ec2 describe-subnets | jq '.Subnets[] | {AvailabilityZone}, {CidrBlock},{SubnetId}'
+aws ec2 describe-subnets --profile staging | jq '.Subnets[] | {AvailabilityZone}, {CidrBlock},{SubnetId}'
 ```
 
