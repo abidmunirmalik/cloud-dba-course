@@ -24,13 +24,13 @@
 
 ### CREATE IAM ROLE
 ```sh
-aws iam create-role --role-name "RDSToS3BucketAccess" --assume-role-policy-document file://trust_policy.json
+aws iam create-role --role-name "RDSToS3BucketAccess" --assume-role-policy-document file://trust_policy.json --profile staging
 ```
 
 
 ### GET POLICY ARN
 ```sh
-aws iam list-policies | jq '.Policies[] | {PolicyName},{Arn}' | grep -i "AmazonS3FullAccess"
+aws iam list-policies --profile staging | jq '.Policies[] | {PolicyName},{Arn}' | grep -i "AmazonS3FullAccess"
 ```
 
 
@@ -38,11 +38,12 @@ aws iam list-policies | jq '.Policies[] | {PolicyName},{Arn}' | grep -i "AmazonS
 ```sh
 aws iam attach-role-policy \
     --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess \
-    --role-name RDSToS3BucketAccess
+    --role-name RDSToS3BucketAccess \
+    --profile staging
 ```
 
 
 ### VERIFY
 ```sh
-aws iam list-roles | jq '.Roles[] | {RoleName}'
+aws iam list-roles --profile staging | jq '.Roles[] | {RoleName}'
 ```
