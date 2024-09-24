@@ -10,18 +10,18 @@ aws rds describe-db-parameters --db-parameter-group-name default.mysql8.0
 
 ### CREATE DB PARAMETER GROUP FOR MYSQL8
 ```sh
-aws rds create-db-parameter-group --db-parameter-group-name "demopg" --db-parameter-group-family "mysql8.0" --description "Demo PG"
+aws rds create-db-parameter-group --db-parameter-group-name "rds-staging-pg" --db-parameter-group-family "mysql8.0" --description "PG for Staging RDS"
 aws rds describe-db-parameter-groups
 ```
 
 
 ### RESET DB PARAMETER GROUP
 ```sh
-aws rds reset-db-parameter-group --db-parameter-group-name "demopg" --reset-all-parameters
+aws rds reset-db-parameter-group --db-parameter-group-name "rds-staging-pg" --reset-all-parameters
 ```
 
 
 ### DELETE DB PARAMETER GROUP
 ```sh
-aws rds delete-db-parameter-group --db-parameter-group-name demopg
+aws rds delete-db-parameter-group --db-parameter-group-name rds-staging-pg
 ```
