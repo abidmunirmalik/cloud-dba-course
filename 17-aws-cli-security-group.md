@@ -14,9 +14,9 @@ echo ${VPC_ID}
 
 aws ec2 create-security-group \
     --vpc-id ${VPC_ID} \
-    --group-name "dev-rds-sg" \
+    --group-name "rds-staging-sg" \
     --description "SG for RDS Dev" \
-    --tag-specifications ResourceType=security-group,Tags='[{Key=Name,Value="dev-rds-sg"}]'
+    --tag-specifications ResourceType=security-group,Tags='[{Key=Name,Value="rds-staging-sg"}]'
 ```
 
 ### GET SECURITY ID
