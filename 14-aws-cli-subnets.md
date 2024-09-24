@@ -19,19 +19,19 @@ aws ec2 create-subnet \
     --vpc-id ${VPC_ID} \
     --cidr-block ${SUBNET1_CIDR} \
     --availability-zone "us-east-1a" \
-    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-dev-1a"}]'
+    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-staging-1a"}]'
 
 aws ec2 create-subnet \
     --vpc-id ${VPC_ID} \
     --cidr-block ${SUBNET2_CIDR} \
     --availability-zone "us-east-1b" \
-    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-dev-1b"}]'
+    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-staging-1b"}]'
 
 aws ec2 create-subnet \
     --vpc-id ${VPC_ID} \
     --cidr-block ${SUBNET3_CIDR} \
     --availability-zone "us-east-1c" \
-    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-dev-1c"}]'
+    --tag-specifications ResourceType=subnet,Tags='[{Key=Name,Value="public-staging-1c"}]'
 ```
 
 
