@@ -9,14 +9,14 @@ aws ec2 create-vpc \
     --cidr-block ${VPC_CIDR} \
     --instance-tenancy default \
     --region us-east-1 \
-    --tag-specifications ResourceType=vpc,Tags='[{Key=Name,Value="dev-vpc"}]'
+    --tag-specifications ResourceType=vpc,Tags='[{Key=Name,Value="staging-vpc"}]'
 ```
 
 
 ### CREATE INTERNET GATEWAY IGW
 ```sh
 aws ec2 create-internet-gateway \
-    --tag-specifications ResourceType=internet-gateway,Tags='[{Key=Name,Value="dev-IGW"}]'
+    --tag-specifications ResourceType=internet-gateway,Tags='[{Key=Name,Value="staging-IGW"}]'
 ```
 
 
