@@ -28,7 +28,7 @@ aws ec2 describe-security-groups --profile staging | jq '.SecurityGroups[] | {Vp
 
 ### CREATE INBOUND RULE
 ```sh
-SEC_ID="sg-0d40d9597e090c615"
+SEC_ID="sg-0a990980f4ae0da90"
 echo ${SEC_ID}
 
 aws ec2 authorize-security-group-ingress \
