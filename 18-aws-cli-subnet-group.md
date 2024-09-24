@@ -15,8 +15,8 @@ SUBNET3_ID="subnet-0efa7820e3692998d"
 echo ${SUBNET1_ID} ${SUBNET2_ID} ${SUBNET3_ID}
 
 aws rds create-db-subnet-group \
-    --db-subnet-group-name "dev-rds-subnet-group" \
-    --db-subnet-group-description "Subnet Group for RDS Dev" \
+    --db-subnet-group-name "rds-staging-subnet-group" \
+    --db-subnet-group-description "Subnet Group for RDS Staging" \
     --subnet-ids '["subnet-08e4ab9abcb5dd68e", "subnet-0e78ce016536feaab", "subnet-0efa7820e3692998d"]'
 ```
 
