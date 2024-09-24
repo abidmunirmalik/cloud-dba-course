@@ -3,25 +3,26 @@
 
 ### GET VPC ID
 ```sh
-aws ec2 describe-vpcs | jq '.Vpcs[] | {VpcId},{Tags}'
+aws ec2 describe-vpcs --profile staging | jq '.Vpcs[] | {VpcId},{Tags}'
 ```
 
 
 ### CREATE SECURITY GROUP
 ```sh
-VPC_ID="vpc-083591f5a14845d54"
+VPC_ID="vpc-00adcb230943229fa"
 echo ${VPC_ID}
 
 aws ec2 create-security-group \
     --vpc-id ${VPC_ID} \
     --group-name "rds-staging-sg" \
     --description "SG for RDS Dev" \
-    --tag-specifications ResourceType=security-group,Tags='[{Key=Name,Value="rds-staging-sg"}]'
+    --tag-specifications ResourceType=security-group,Tags='[{Key=Name,Value="rds-staging-sg"}]' \
+    --profile staging
 ```
 
 ### GET SECURITY ID
 ```sh
-aws ec2 describe-security-groups | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
+aws ec2 describe-security-groups --profile staging | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
 ```
 
 
@@ -34,11 +35,12 @@ aws ec2 authorize-security-group-ingress \
     --group-id ${SEC_ID} \
     --protocol tcp \
     --port 3306 \
-    --cidr 0.0.0.0/0 
+    --cidr 0.0.0.0/0 \
+    --profile staging
 ```
 
 
 ### VERIFY
 ```sh
-aws ec2 describe-security-groups | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
+aws ec2 describe-security-groups --profile staging | jq '.SecurityGroups[] | {VpcId},{GroupId},{Tags}'
 ```
