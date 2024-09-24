@@ -28,8 +28,8 @@ aws ec2 describe-internet-gateways --profile staging | jq '.InternetGateways[] |
 
 ### CREATE ROUTE
 ```sh
-RT_ID=""
-IGW_ID=""
+RT_ID="rtb-08438a620c527f885"
+IGW_ID="igw-0f832f33228d0e508"
 echo ${RT_ID} ${IGW_ID}
 
 aws ec2 create-route \
