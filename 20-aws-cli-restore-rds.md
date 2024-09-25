@@ -16,11 +16,12 @@ aws rds restore-db-instance-from-s3 \
   --master-user-password stagingTmkMbdNHLtC2U \
   --s3-bucket-name "golddataprotectors" \
   --s3-prefix "backups/" \
-  --s3-ingestion-role-arn "arn:aws:iam::815599286913:role/webassign-rds-to-s3-access" \
+  --s3-ingestion-role-arn "arn:aws:iam::004555066016:role/RDSToS3BucketAccess" \
   --source-engine mysql \
   --source-engine-version 8.0.35 \
-  --db-subnet-group-name "staging-rds-sg" \
-  --db-parameter-group-name "staging-rds-pg" \
+  --vpc-security-group-ids "sg-0a990980f4ae0da90" \
+  --db-subnet-group-name "rds-staging-subnet-group" \
+  --db-parameter-group-name "rds-staging-pg" \
   --enable-performance-insights \
   --performance-insights-retention-period 7 \
   --no-deletion-protection \
