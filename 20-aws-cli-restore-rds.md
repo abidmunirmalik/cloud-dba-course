@@ -24,6 +24,7 @@ aws rds restore-db-instance-from-s3 \
   --db-parameter-group-name "rds-staging-pg" \
   --no-deletion-protection \
   --no-auto-minor-version-upgrade \
+  --publicly-accessible \
   --profile staging
 ```
 
