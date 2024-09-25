@@ -22,8 +22,6 @@ aws rds restore-db-instance-from-s3 \
   --vpc-security-group-ids "sg-0a990980f4ae0da90" \
   --db-subnet-group-name "rds-staging-subnet-group" \
   --db-parameter-group-name "rds-staging-pg" \
-  --enable-performance-insights \
-  --performance-insights-retention-period 7 \
   --no-deletion-protection \
   --no-auto-minor-version-upgrade \
   --profile staging
