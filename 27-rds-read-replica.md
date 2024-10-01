@@ -13,6 +13,18 @@ aws ec2 create-security-group \
     --profile staging
 ```
 
+### SECURITY GROUP INBOUND RULE
+```sh
+SEC_ID="sg-02fe45ea84362952e"
+echo ${SEC_ID}
+
+aws ec2 authorize-security-group-ingress \
+    --group-id ${SEC_ID} \
+    --protocol tcp \
+    --port 3306 \
+    --cidr 0.0.0.0/0 \
+    --profile staging
+```
 
 
 ### RDS READ REPLICA
