@@ -3,7 +3,7 @@
 
 ### SECURITY GROUP
 ```sh
-VPC_ID=""
+VPC_ID="vpc-052e6de4781367a6c"
 
 aws ec2 create-security-group \
     --vpc-id ${VPC_ID} \
